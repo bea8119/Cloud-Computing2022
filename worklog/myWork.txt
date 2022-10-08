@@ -1,0 +1,12 @@
+Intro:
+I start this course with very basic os programming notions, zero assembly and arm knowledge and having never used gdb debugger.
+
+Week 1 (oct 1 - oct 7)
+03.10.22 I started reading the readme files to try to unserstand what to do. I never really worked with Linux so it was a bit of a challenge to even start to install everything that was required and setting up the git repository.
+04.10.22 I finally connected my github repository, i installed eclipse and started to set up everything using the readme files as references. 
+After this I was stuck for a couple of days trying to figure out how to use the debugger, in the meanwhile i tried to read the code files and try to understand what everything means.
+Week conclusion: This first week was a struggle and i was only able to run the program but not yet debug it, i wasn't yet able to do any of the "real" requirements for this week, but im gonna put a lot of effort into catching up.
+
+Week 2 (oct 8 - oct 14)
+
+
