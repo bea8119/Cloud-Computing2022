@@ -62,7 +62,7 @@ of the linker script and the memory map.
 Remove the periodic "Zzzz..." output. Why was it there? 
 What does that tell you about the execution?
 
-Why is the symbol _stack_top defined attend why is it at the end of
+Why is the symbol _stack_top defined at the end why is it at the end of
 everything?
 
 How can you verify in C that the stack is working properly?

@@ -1,0 +1,2 @@
+Week1 Step1:
+In the makefile we find the settings to start the qemu machine as VAB or VPB. For VAB we notice that the cpu used is arm926 while for VPB its cortex-a8. Concerning memory, VAB will use 1M while VPB memory is set to 32M.
