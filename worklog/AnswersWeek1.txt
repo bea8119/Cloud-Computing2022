@@ -15,19 +15,25 @@ To verify in c that the stack works we can try an operation of push in the stack
 If we called many functions in C we would have a lot of memory allocated for all this functions and risk to get the stack full and go in overflow.
 To try to ensure that our program is safe we could use an MMU that helps with growing/shrinking of the stack, its safer wrt overflows. We could then implement multiple levels of cache.
 
-
-<<<<<<< HEAD
-
-=======
->>>>>>> 6495a5ed5ecf2d86336839f3031a0a4cf8f55eda
 Week1 Step3:
 To emulate a second serial line with telnet, i added in the makefile another QEMU_SERIAL parameter: 
 QEMU_SERIAL2=-serial mon:telnet::4321,server=on,wait=off
 and created a new command run2 and debug2 (using tcp port 4321 instead of 1234 like in the first debug).
 I directed the kprintf output to another serial line using UART1 instead of UART0.
 Hitting regular letters on the console, i can see their ascii characters (as numbers) and they are represented by only one ascii char. For special keys, on the other hand, we sometimes have a different behaviour. For backspace and delete we still have one ascii code as one character, but for all arrows the return is three separate numbers as 3 different characters. The first two characters are the same and they identify "arrows" and the third is unique for each arrow (left, right, up..).
-<<<<<<< HEAD
 
 
-=======
->>>>>>> 6495a5ed5ecf2d86336839f3031a0a4cf8f55eda
+Week1 Step4:
+Emulation of the console shell behaviour on the qemu serial line 2, in telnet.
+A while function gets one character (in some cases more) per cycle. che character is analyzed and different behaviours occur depending on the character. 
+	-If its a regular character then it is saved in a line buffer
+	-If its the "enter" character then the previously saved line is analyzed and:
+		- if the word written is "reset" then we delete all the lines previously written (we have a counter for written lines)
+		-If the first word is "echo" then the subsequent string will be printed in the following line
+		-if its any other entry, no action is taken and the line simply stays there.
+	all of the lines are saved in an array of strings with 20 entries max (the history) when enter is pressed.
+	-If the character inserted is either left or right arrow, then the cursor moves accordingly
+	-if the char is up or down arrow, the current line is overwritten with the commands saved in history (in LIFO order)
+	-if the char is the delete char, then one character is deleted. If we previosuly moved the cursor, the selected char will be deleted.
+	We can also add characters after we moved with the cursor and of course the line will be modified and always the right command will be saved.
+
