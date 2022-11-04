@@ -12,5 +12,5 @@ The symbol _stack_top needs to be defined at the end because its after the memor
 
 To verify in c that the stack works we can try an operation of push in the stack and subsequently an operation of pop. if the result of the pop is the element we previously pushed, the stack should be working properly.
 
-If we called many functions in C we would have many stacks for all this functions and risk to get the stack full and go in overflow.
+If we called many functions in C we would have a lot of memory allocated for all this functions and risk to get the stack full and go in overflow.
 To try to ensure that our program is safe we could use an MMU that helps with growing/shrinking of the stack, its safer wrt overflows. We could then implement multiple levels of cache.
