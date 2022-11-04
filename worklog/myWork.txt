@@ -15,3 +15,5 @@ i am trying to work and get confortable with debugging and qemu.
 
 03.11.22 I finished the week 1 assignment and i wasnt regular in doing the tags because i understood too late how to do them. I tried to work consistently but i did it outside of github so it will not be shown in the commits.
 Im going to do better with the tags and commits for the week 2 assignment.
+
+04.11.22 Today i am doing all commits of my week1 work together, even tho they werent really all finished today but during the last weeks in local.
