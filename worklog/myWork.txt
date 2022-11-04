@@ -13,3 +13,5 @@ i am trying to work and get confortable with debugging and qemu.
 
 28-29-30.10.22 I worked with one of my colleagues and together we were able to figure out the first steps of week 1 and we also started coding for the step 3 of week 1.
 
+03.11.22 I finished the week 1 assignment and i wasnt regular in doing the tags because i understood too late how to do them. I tried to work consistently but i did it outside of github so it will not be shown in the commits.
+Im going to do better with the tags and commits for the week 2 assignment.
