@@ -41,7 +41,7 @@
  * It is the internal function that kprintf uses internally
  * to output one single character.
  */
-void kputchar(int c);
+static void kputchar(int c);
 
 /*
  * This is an equivalent to the function "printf" that you known about,
@@ -68,6 +68,10 @@ void kprintf(const char *fmt, ...);
 #define va_end __builtin_va_end
 
 int kvprintf(char const *fmt, void (*func)(int), int radix, va_list ap);
+
+static void kputchar(int c){
+uart_send(UART1, c);
+}
 
 void kprintf(const char *fmt, ...) {
   /* http://www.pagetable.com/?p=298 */

@@ -10,6 +10,8 @@
 
 #include <stddef.h>
 #include <stdint.h>
+#include <stdio.h>
+
 
 /*
  * Board constantes such as BARs

@@ -35,6 +35,7 @@ QEMU_LOADER=-device loader,file=kernel.elf
 #     $ telnet locahost 4321
 #-------------------------------------------------------------------
 QEMU_SERIAL=-serial mon:stdio
+QEMU_SERIAL2=-serial mon:telnet::4321,server=on,wait=off
 
 #-------------------------------------------------------------------
 # Prefix for the toolchain, like:
@@ -46,7 +47,6 @@ QEMU_SERIAL=-serial mon:stdio
 #   TOOLCHAIN=/usr/bin/arm-none-eabi
 #-------------------------------------------------------------------
 TOOLCHAIN=arm-none-eabi
-
 #-------------------------------------------------------------------
 # Compiler, assembler, and linker flags
 #-------------------------------------------------------------------
@@ -79,10 +79,13 @@ clean:
 #-------------------------------------------------------------------
 run: all
 	$(QEMU) -M $(QEMU_MACHINE) -cpu $(QEMU_CPU) -m $(QEMU_MEMORY) -nographic $(QEMU_LOADER) $(QEMU_SERIAL)
+run2: all
+	$(QEMU) -M $(QEMU_MACHINE) -cpu $(QEMU_CPU) -m $(QEMU_MEMORY) -nographic $(QEMU_LOADER) $(QEMU_SERIAL2)
 
 debug: all
 	$(QEMU) -M $(QEMU_MACHINE) -cpu $(QEMU_CPU) -m $(QEMU_MEMORY) -nographic $(QEMU_LOADER) $(QEMU_SERIAL) -gdb tcp::1234 -S
+debug2: all
+	$(QEMU) -M $(QEMU_MACHINE) -cpu $(QEMU_CPU) -m $(QEMU_MEMORY) -nographic $(QEMU_LOADER) $(QEMU_SERIAL2)     -gdb tcp::1234 -S
 
 kill:
 	pkill qemu-system-arm
-

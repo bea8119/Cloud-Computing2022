@@ -1,5 +1,5 @@
 #include "main.h"
-
+#include "kprintf.c"
 /**
  * This is the C entry point, upcalled once the hardware has been setup properly
  * in assembly language, see the reset.s file.
@@ -20,12 +20,11 @@ void _start() {
       // this annoying code ;-)
       count++;
       if (count > 10000000) {
-        uart_send_string(UART0, "\n\rZzzz....\n\r");
+       // uart_send_string(UART0, "\n\rZzzz....\n\r");
         count = 0;
       }
     }
     if (c == '\r')
-      uart_send(UART0, '\n');
-    uart_send(UART0, c);
-  }
+      	uart_send(UART0, '\n');
+        kprintf("Corresponding ASCII code is: %d", c);
 }
