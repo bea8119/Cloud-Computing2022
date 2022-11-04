@@ -1,2 +1,4 @@
 Week1 Step1:
 In the makefile we find the settings to start the qemu machine as VAB or VPB. For VAB we notice that the cpu used is arm926 while for VPB its cortex-a8. Concerning memory, VAB will use 1M while VPB memory is set to 32M.
+The linker script contains the instructions to create the memory map of the allocated memory for the application, while the memory map is the "result" of the operation of linking made.
+The bss section is aligned on a 16-byte boundary since in reset.s the code clears (zeroes) 16 bytes at a time, aka 4 registers made up of 32bits (4 bytes) each 4*4 bytes=16 bytes total.
