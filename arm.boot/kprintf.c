@@ -34,7 +34,7 @@
  *  @(#)subr_prf.c  8.3 (Berkeley) 1/21/94
  */
 
-#include "main.h"
+//#include "main.h"
 
 /*
  * You need to define this function, somewhere.
@@ -70,7 +70,7 @@ void kprintf(const char *fmt, ...);
 int kvprintf(char const *fmt, void (*func)(int), int radix, va_list ap);
 
 static void kputchar(int c){
-uart_send(UART1, c);
+uart_send(UART0, c);
 }
 
 void kprintf(const char *fmt, ...) {

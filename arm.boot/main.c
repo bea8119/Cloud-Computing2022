@@ -1,5 +1,6 @@
 #include "main.h"
 #include "kprintf.c"
+
 /**
  * This is the C entry point, upcalled once the hardware has been setup properly
  * in assembly language, see the reset.s file.
@@ -12,11 +13,13 @@ int strcmp(const char* s1, const char* s2)
         s1++;
         s2++;
     }
-    return (const unsigned char)s1 -(const unsigned char)s2;
+    return *(const unsigned char*)s1 -*(const unsigned char*)s2;
 }
 
 void _start() {
-  int i = 0;
+
+	//struct cb* cb;
+  int i = 0, count=0;
   int orizontal = 0;
   int vertical = 0;
   int r;
@@ -27,7 +30,10 @@ void _start() {
   char rimanente[100];
   char history[20][100];
 
-  /*while (1) {
+  //vic_setup();
+  //cb_init(cb);
+
+ /* while (1) {
     unsigned char c;
     while (0 == uart_receive(UART0, &c)) {
 
@@ -48,8 +54,9 @@ void _start() {
     kprintf("Il codice ASCII è: %d", c);
 
 
-    }
-  }*/
+    }*/
+
+
   while (1) {
     unsigned char c;
     while ( 1 == uart_receive(UART0, &c)){
@@ -98,15 +105,16 @@ void _start() {
     else if (c == 127){
         kprintf( "\033[2K\r");
 
+
         if(orizontal == i){
-        line[i--] = "";
+        line[i--] = ' ';
         orizontal = i;
         }
 
          else{
          for(r=orizontal-1; r<i; r++)
             line[r] = line[r+1];
-         line[i--] = "";
+         line[i--] = ' ';
          orizontal--;
          }
          for(r=0; r<i; r++)
@@ -184,5 +192,6 @@ void _start() {
     }
 
     }
+  }
 }
-}
+
