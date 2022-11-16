@@ -5,6 +5,7 @@
  * Returns 0 if there are no character available.
  * Returns 1 if a character was read.
  */
+
 int uart_receive(int uart, unsigned char *s) {
   unsigned short* uart_fr = (unsigned short*) (uart + UART_FR);
   unsigned short* uart_dr = (unsigned short*) (uart + UART_DR);
@@ -12,6 +13,13 @@ int uart_receive(int uart, unsigned char *s) {
     return 0;
   *s = (*uart_dr & 0xff);
   return 1;
+}
+
+void uart_init(int uart){
+	// Enable FIFO queues, both rx-queue and tx-queue.
+	  uint16_t lcr = *(uint16_t*) (uart + CUARTLCR_H);
+	  lcr |= CUARTLCR_H_FEN;
+	  *(uint16_t*) (uart + CUARTLCR_H) = lcr;
 }
 
 /**

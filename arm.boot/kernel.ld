@@ -9,8 +9,10 @@ SECTIONS
 {
   . = 0x00; 
   .vector : { KEEP(vector.o(.text)) }
+  .irqs : { KEEP(irqs.o(.text)) }
   . = 0x1000;
   .reset : { KEEP(reset.o(.text)) }
+  
   .text : { *(.text) }
 
  /*
@@ -43,4 +45,5 @@ SECTIONS
   . = ALIGN(8);
   . = . + 0x1000; /* 4kB of stack memory */
   stack_top = .;
+  irq_stack_top = .;
 }

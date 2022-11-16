@@ -18,7 +18,7 @@ int strcmp(const char* s1, const char* s2)
 
 void _start() {
 
-	//struct cb* cb;
+	struct cb* cb;
   int i = 0, count=0;
   int orizontal = 0;
   int vertical = 0;
@@ -30,8 +30,12 @@ void _start() {
   char rimanente[100];
   char history[20][100];
 
-  //vic_setup();
-  //cb_init(cb);
+  vic_setup();
+  cb_init(cb);
+  vic_enable();
+  vic_irq_enable(0, void (*handler)(void*), void *cookie);
+
+
 
  /* while (1) {
     unsigned char c;
@@ -58,7 +62,8 @@ void _start() {
 
 
   while (1) {
-    unsigned char c;
+	  uart_init(UART0);
+	  uint8_t c;
     while ( 1 == uart_receive(UART0, &c)){
     if (c == 13)
        {
@@ -191,6 +196,7 @@ void _start() {
          }
     }
 
+    wfi();
     }
   }
 }

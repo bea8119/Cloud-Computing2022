@@ -17,5 +17,9 @@
  * PL011 UART
  */
 #include "uart.h"
+#include "cb.h"
+#include "uart-irqs.h"
+#include "vic.h"
+#include "irqs.S"
 
 #endif /* BOARD_VPB_H_ */
