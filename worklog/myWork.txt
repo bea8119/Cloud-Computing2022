@@ -1,0 +1,40 @@
+Intro:
+I start this course with very basic os programming notions, zero assembly and arm knowledge and having never used gdb debugger.
+
+03.10.22 I started reading the readme files to try to unserstand what to do. I never really worked with Linux so it was a bit of a challenge to even start to install everything that was required and setting up the git repository.
+04.10.22 I finally connected my github repository, i installed eclipse and started to set up everything using the readme files as references. 
+After this I was stuck for a couple of days trying to figure out how to use the debugger, in the meanwhile i tried to read the code files and try to understand what everything means.
+Week conclusion: This first week was a struggle and i was only able to run the program but not yet debug it, i wasn't yet able to do any of the "real" requirements for this week, but im gonna put a lot of effort into catching up.
+
+12.10.22 I had a lot of problems until now installing gdb, some problems with missing libraries but that i am not able to solve yet for my lack of experience with these types of problems. I asked my colleagues but noone had similar problems, they tried to help me but not really soccessfully.
+
+20.10.22 I was finally able to install gdb and starting to try to understand the week 1 assignment. I am also having some problems using github and understanding the tags.
+i am trying to work and get confortable with debugging and qemu.
+
+28-29-30.10.22 I worked with one of my colleagues and together we were able to figure out the first steps of week 1 and we also started coding for the step 3 of week 1.
+
+03.11.22 I finished the week 1 assignment and i wasnt regular in doing the tags because i understood too late how to do them. I tried to work consistently but i did it outside of github so it will not be shown in the commits.
+Im going to do better with the tags and commits for the week 2 assignment.
+
+04.11.22 Today i am doing all commits of my week1 work together, even tho they werent really all finished today but during the last weeks in local.
+
+07.11.22 I started working assignment 2, i worked on trying to figure out how to start the program with the new files, my level is unfortunately very low and i even struggle with the basis.
+
+13.11.22 These days i read again and studied the slides at the best of my capacities.
+
+14.11.22 -15.11.22 I created in uart.c the function uart_init, that sets the fifo queues to active setting the CUARTLCR_H_FEN to active and also setting the UART_IMSC, the receiver interrupt mask. I also created the uart_rx_handler, that is called to handle the insertion of data into the circular buffer, when an interrupt is called.In the kernel.ld i added the end ot the irq stack, irq_stack_top, and not being sure where its supposed to end i set it just after the normal stack top. In vector.s i modified the _irq_handler to the function _isr, that upcalls the isr c function in vic.c. 
+I also modified the function uart_receive to get the char from the circular buffer, if not empty.
+At this point, in the main i called vic_setup, vic_enable, uart_init (that calls cb_init) and vic_irq_enable, passing as irq parameter the number 12, (that should correspond to the uart0 interrupt controller) and passing the function uart_rx_handler, so that the handler can be called from that side. 
+I worked with the gdb debugger, checking carefully how the functions are called and in which order.
+When a char is sent from serial line, an interrupt is called and the isr function is invoked and after that the uart_rx_handler handles the insertion of the char in the circular buffer. When the main reaches the uart_receive function call, the uart_receive can get the char previously inserted in the cb and assign it to our character.
+Until here, everything seemed to work well, but after this point i encountered weird problems: some of my c variables (int j, vertical and orizontal) acquire random values and it makes it impossinble for my program to work. I tried to solve this problem and research extensively on the internet and ask colleagues but i was not able to solve this problem. I think something goes wrong either in the _wfi call in irqs.s or most probably in the _irq_handler code that i added in vector.s. something happen for which my variables do not restore itself properly when going back to the main.
+
+
+
+
+
+
+
+
+
+
