@@ -46,5 +46,10 @@ _reserved:
 _fiq_handler:
 	b _halt
 _irq_handler:
-	b _halt
+	sub lr, lr, #4
+	stmfd   sp!, {r0-r12, lr}
+	bl isr
+	ldmfd   sp!, {r0-r12, pc}^
+
+
 

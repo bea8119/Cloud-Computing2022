@@ -18,5 +18,6 @@
  * Board constantes such as BARs
  */
 #include "board.h"
+#include "uart-irqs.h"
 
 #endif /* MAIN_H_ */

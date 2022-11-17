@@ -26,7 +26,7 @@ void vic_enable();
 void vic_disable();
 
 void vic_irq_enable(int irq,
-    void (*handler)(void*),
+    void (*handler),
     void *cookie);
 
 void vic_irq_disable(int irq);

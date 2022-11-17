@@ -56,6 +56,7 @@
 struct handler {
   void (*handler)(void*);
   void *cookie;
+  struct cb* cb;
 };
 
 static struct handler handlers[32];
@@ -73,6 +74,8 @@ void isr() {
       h->handler(h->cookie);
     }
   }
+
+  return;
 }
 
 /*
@@ -131,7 +134,7 @@ void wfi() {
 /*
  * Enable the given IRQ at the VIC
  */
-void vic_irq_enable(int irq, void (*handler)(void*), void *cookie) {
+void vic_irq_enable(int irq, void (*handler), void *cookie) {
   struct handler* h = &handlers[irq];
   h->handler = handler;
   h->cookie = cookie;

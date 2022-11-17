@@ -17,3 +17,24 @@ i am trying to work and get confortable with debugging and qemu.
 Im going to do better with the tags and commits for the week 2 assignment.
 
 04.11.22 Today i am doing all commits of my week1 work together, even tho they werent really all finished today but during the last weeks in local.
+
+07.11.22 I started working assignment 2, i worked on trying to figure out how to start the program with the new files, my level is unfortunately very low and i even struggle with the basis.
+
+13.11.22 These days i read again and studied the slides at the best of my capacities.
+
+14.11.22 -15.11.22 I created in uart.c the function uart_init, that sets the fifo queues to active setting the CUARTLCR_H_FEN to active and also setting the UART_IMSC, the receiver interrupt mask. I also created the uart_rx_handler, that is called to handle the insertion of data into the circular buffer, when an interrupt is called.In the kernel.ld i added the end ot the irq stack, irq_stack_top, and not being sure where its supposed to end i set it just after the normal stack top. In vector.s i modified the _irq_handler to the function _isr, that upcalls the isr c function in vic.c. 
+I also modified the function uart_receive to get the char from the circular buffer, if not empty.
+At this point, in the main i called vic_setup, vic_enable, uart_init (that calls cb_init) and vic_irq_enable, passing as irq parameter the number 12, (that should correspond to the uart0 interrupt controller) and passing the function uart_rx_handler, so that the handler can be called from that side. 
+I worked with the gdb debugger, checking carefully how the functions are called and in which order.
+When a char is sent from serial line, an interrupt is called and the isr function is invoked and after that the uart_rx_handler handles the insertion of the char in the circular buffer. When the main reaches the uart_receive function call, the uart_receive can get the char previously inserted in the cb and assign it to our character.
+Until here, everything seemed to work well, but after this point i encountered weird problems: some of my c variables (int j, vertical and orizontal) acquire random values and it makes it impossinble for my program to work. I tried to solve this problem and research extensively on the internet and ask colleagues but i was not able to solve this problem. I think something goes wrong either in the _wfi call in irqs.s or most probably in the _irq_handler code that i added in vector.s. something happen for which my variables do not restore itself properly when going back to the main.
+
+
+
+
+
+
+
+
+
+

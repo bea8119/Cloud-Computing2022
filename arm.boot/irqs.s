@@ -80,6 +80,10 @@ _irqs_disable:
     .size   _irqs_disable, . - _irqs_disable
 	.endfunc
 
+
+
+
+
 /*
  * ARM11 MPCore Processor Technical Reference Manual
  * Page 159, Control Coprocessor CP15, Wait for interrupt
@@ -110,7 +114,7 @@ _wfi_arm11:
 	.func _wfi
 _wfi:
 	wfi
-	mov pc,lr
+	mov pc, lr
     .size   _wfi, . - _wfi
 	.endfunc
 #endif
